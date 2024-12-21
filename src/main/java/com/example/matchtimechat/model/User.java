@@ -35,7 +35,7 @@ public class User {
     @NotNull(message = "Role is required")
     private String role;
 
-    private boolean isActive = true; // Т.е. активен
+    private boolean isActive = true; // Т.е. онлайн или нет
 
     private LocalDateTime createdAt;
 
