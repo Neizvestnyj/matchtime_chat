@@ -47,7 +47,19 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-//    public List<Message> getMessagesByChatId(Long chatId) {
-//        return messageRepository.findByChatIdOrderBySendAtAsc(chatId);
-//    }
+    public Message getMessageById(Long id) {
+        return messageRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Message not found with id: " + id));
+    }
+
+    public List<Message> getMessagesByChatId(Long chatId) {
+        return messageRepository.findByChatIdOrderBySendAtAsc(chatId);
+    }
+
+    public void deleteMessageById(Long id) {
+        if (!messageRepository.existsById(id)) {
+            throw new RuntimeException("Message not found with id: " + id);
+        }
+        messageRepository.deleteById(id);
+    }
 }

@@ -1,7 +1,9 @@
 package com.example.matchtimechat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.matchtimechat.serializer.ChatIdSerializer;
+import com.example.matchtimechat.serializer.MessageIdSerializer;
+import com.example.matchtimechat.serializer.UserIdSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,36 +22,18 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false, foreignKey = @ForeignKey(name = "fk_messages_chat_id"))
-    @JsonIgnore // Полную сущность не сериализуем
+    @JsonSerialize(using = ChatIdSerializer.class)
     private Chat chat;
-
-    @Transient // Добавляем для вывода только ID
-    @JsonProperty("chatId")  // Устанавливаем имя поля в JSON как "chatId"
-    public Long getChatId() {
-        return chat != null ? chat.getId() : null;
-    }
 
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false, foreignKey = @ForeignKey(name = "fk_messages_sender_id"))
-    @JsonIgnore
+    @JsonSerialize(using = UserIdSerializer.class)
     private User sender;
-
-    @Transient
-    @JsonProperty("senderId")  // Устанавливаем имя поля в JSON как "senderId"
-    public Long getSenderId() {
-        return sender != null ? sender.getId() : null;
-    }
 
     @ManyToOne
     @JoinColumn(name = "reply_to", foreignKey = @ForeignKey(name = "fk_messages_reply_to"), nullable = true)
-    @JsonIgnore
+    @JsonSerialize(using = MessageIdSerializer.class)
     private Message replyTo;
-
-    @Transient
-    @JsonProperty("replyToId")  // Устанавливаем имя поля в JSON как "replyToId"
-    public Long getReplyToId() {
-        return replyTo != null ? replyTo.getId() : null;
-    }
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;

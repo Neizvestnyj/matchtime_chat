@@ -1,7 +1,8 @@
 package com.example.matchtimechat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.matchtimechat.serializer.ChatIdSerializer;
+import com.example.matchtimechat.serializer.UserIdSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,25 +20,13 @@ public class ChatParticipant {
 
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false)
-    @JsonIgnore
+    @JsonSerialize(using = ChatIdSerializer.class)
     private Chat chat;
-
-    @Transient
-    @JsonProperty("chatId")
-    public Long getChatId() {
-        return chat != null ? chat.getId() : null;
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
+    @JsonSerialize(using = UserIdSerializer.class)
     private User user;
-
-    @Transient
-    @JsonProperty("userId")
-    public Long getUserId() {
-        return user != null ? user.getId() : null;
-    }
 
     private LocalDateTime joinedAt;
 
