@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -23,9 +22,6 @@ public class Chat {
     private String name;
 
     private LocalDateTime createdAt;
-
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ChatParticipant> participants;
 
     @PrePersist
     protected void onCreate() {
