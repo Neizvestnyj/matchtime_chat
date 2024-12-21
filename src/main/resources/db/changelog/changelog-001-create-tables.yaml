@@ -1,0 +1,183 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: developer2
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: password_hash
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+              - column:
+                  name: role
+                  type: VARCHAR(50)
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: chats
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: created_by
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+
+        - addForeignKeyConstraint:
+            baseTableName: chats
+            baseColumnNames: created_by
+            constraintName: fk_chats_created_by
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: messages
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: chat_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sender_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reply_to
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: content
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_read
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: send_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+
+        - addForeignKeyConstraint:
+            baseTableName: messages
+            baseColumnNames: chat_id
+            constraintName: fk_messages_chat_id
+            referencedTableName: chats
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: messages
+            baseColumnNames: sender_id
+            constraintName: fk_messages_sender_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: messages
+            baseColumnNames: reply_to
+            constraintName: fk_messages_reply_to
+            referencedTableName: messages
+            referencedColumnNames: id
+            onDelete: SET NULL
+
+        - createTable:
+            tableName: chat_participants
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: chat_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: joined_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+
+        - addForeignKeyConstraint:
+            baseTableName: chat_participants
+            baseColumnNames: chat_id
+            constraintName: fk_chat_participants_chat_id
+            referencedTableName: chats
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: chat_participants
+            baseColumnNames: user_id
+            constraintName: fk_chat_participants_user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
