@@ -1,5 +1,7 @@
 package com.example.matchtimechat.loader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import com.example.matchtimechat.model.*;
 import com.example.matchtimechat.repository.ChatRepository;
@@ -17,6 +19,7 @@ public class TestDataLoader implements CommandLineRunner {
     private final ChatRepository chatRepository;
     private final MessageRepository messageRepository;
     private final Environment environment;
+    private static final Logger logger = LoggerFactory.getLogger(TestDataLoader.class);
 
     public TestDataLoader(UserRepository userRepository, ChatRepository chatRepository, MessageRepository messageRepository, Environment environment) {
         this.userRepository = userRepository;
@@ -27,7 +30,7 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("Dev: " + List.of(environment.getActiveProfiles()).contains("dev"));
+        logger.info("Dev: {}", List.of(environment.getActiveProfiles()).contains("dev"));
 
         if (!List.of(environment.getActiveProfiles()).contains("dev")) {
             return; // Не загружаем данные, если профиль не dev
@@ -35,11 +38,11 @@ public class TestDataLoader implements CommandLineRunner {
 
         // Проверка, есть ли данные
         if (userRepository.count() > 0 || chatRepository.count() > 0 || messageRepository.count() > 0) {
-            System.out.println("Данные уже загружены, пропускаем загрузку.");
+            logger.info("Данные уже загружены, пропускаем загрузку.");
             return;
         }
 
-        System.out.println("Создание тестовых данных...");
+        logger.info("Создание тестовых данных...");
 
         // === Создание пользователей ===
         User user1 = new User();
