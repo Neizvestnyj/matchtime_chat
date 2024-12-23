@@ -73,11 +73,11 @@ public class TestDataLoader implements CommandLineRunner {
 
         // === Создание чатов ===
         Chat chat1 = new Chat();
-        chat1.setCreatedBy(user1);
+        chat1.setOwner(user1);
         chat1.setName("General Chat");
 
         Chat chat2 = new Chat();
-        chat2.setCreatedBy(user2);
+        chat2.setOwner(user2);
         chat2.setName("Project Discussion");
 
         chatRepository.saveAll(List.of(chat1, chat2));
