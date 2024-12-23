@@ -73,4 +73,16 @@ public class ChatService {
                 .anyMatch(participant -> participant.getUser().getEmail().equals(userEmail));
     }
 
+    public boolean isChatOwner(Long chatId, String userEmail) {
+        return chatRepository.findById(chatId).stream()
+                .anyMatch(chat -> chat.getOwner().getEmail().equals(userEmail));
+    }
+
+    public void deleteChat(Long chatId, String userEmail) {
+        Chat chat = chatRepository.findById(chatId)
+                .orElseThrow(() -> new RuntimeException("Chat not found"));
+        if (!isChatOwner(chatId, userEmail))
+            throw new RuntimeException("You are not allowed to delete this chat");
+        chatRepository.delete(chat);
+    }
 }

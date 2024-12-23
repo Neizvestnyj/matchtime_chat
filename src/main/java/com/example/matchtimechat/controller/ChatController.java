@@ -78,4 +78,10 @@ public class ChatController {
         messageService.deleteMessage(messageId, principal.getName());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @DeleteMapping("/{chatId}")
+    public ResponseEntity<?> deleteChat(@PathVariable Long chatId, Principal principal) {
+        chatService.deleteChat(chatId, principal.getName());
+        return ResponseEntity.ok().build();
+    }
 }
