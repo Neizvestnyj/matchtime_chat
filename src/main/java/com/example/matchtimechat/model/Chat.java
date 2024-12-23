@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Table(name = "chats")
 public class Chat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +21,7 @@ public class Chat {
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     @JsonSerialize(using = UserIdSerializer.class)
-    private User createdBy;
+    private User owner;
 
     private String name;
 
@@ -29,5 +30,13 @@ public class Chat {
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
