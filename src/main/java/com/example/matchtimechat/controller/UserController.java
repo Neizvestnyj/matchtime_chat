@@ -5,6 +5,7 @@ import com.example.matchtimechat.model.User;
 import com.example.matchtimechat.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +20,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    // Этот метод доступен только для пользователей с ролью ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
+    // Этот метод доступен только для пользователей с ролью ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public User createUser(@Valid @RequestBody UserDTO userDTO) {
         User user = new User();
@@ -35,17 +40,23 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    // Этот метод доступен только для пользователей с ролью ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
+    // Этот метод доступен только для пользователей с ролью ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         User updatedUser = userService.updateUser(id, userDTO);
         return ResponseEntity.ok(updatedUser);
     }
 
+    // Этот метод доступен только для пользователей с ролью ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);

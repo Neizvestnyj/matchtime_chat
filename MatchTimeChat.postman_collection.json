@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4f2eb469-5779-4975-8eb9-e2626f33ebc7",
+		"_postman_id": "8125fddb-49eb-46bb-a55d-5aacb016d609",
 		"name": "MatchTimeChat",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28708777"
+		"_exporter_id": "33288118"
 	},
 	"item": [
 		{
@@ -127,6 +127,22 @@
 								"3"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
