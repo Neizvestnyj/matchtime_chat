@@ -11,9 +11,31 @@
 			"item": [
 				{
 					"name": "GetAllUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTY2NDE4LCJleHAiOjE3MzQ5NzAwMTh9.XfblcMADMHtmfTiWvoUTiQ2k91wWZKNGlw9z-9ppTJ5JbcsdYDXMcznz1BS_3Hm3-5jlOD4vuSZhEe9sC28UCA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8081/api/users",
 							"protocol": "http",
@@ -32,10 +54,20 @@
 				{
 					"name": "GetUser",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/users/2",
+							"raw": "http://localhost:8081/api/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -44,7 +76,7 @@
 							"path": [
 								"api",
 								"users",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -53,11 +85,21 @@
 				{
 					"name": "CreateUser",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"firstName\": \"Bob\",\r\n  \"lastName\": \"Z\",\r\n  \"email\": \"bob.z@example.com\",\r\n  \"role\": \"user\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"raw": "{\r\n  \"firstName\": \"Bob\",\r\n  \"lastName\": \"Z\",\r\n  \"email\": \"bob1New.z@example.com\",\r\n  \"role\": \"user\",\r\n  \"password\": \"password\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,11 +124,21 @@
 				{
 					"name": "UpdateUser",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"role\": \"moderator\"\r\n}\r\n",
+							"raw": "{\r\n  \"role\": \"Chill_men\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -94,7 +146,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/users/1",
+							"raw": "http://localhost:8081/api/users/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -103,7 +155,7 @@
 							"path": [
 								"api",
 								"users",
-								"1"
+								"9"
 							]
 						}
 					},
@@ -112,10 +164,20 @@
 				{
 					"name": "DeleteUser",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/users/3",
+							"raw": "http://localhost:8081/api/users/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -124,7 +186,7 @@
 							"path": [
 								"api",
 								"users",
-								"3"
+								"10"
 							]
 						}
 					},
@@ -133,16 +195,60 @@
 				{
 					"name": "Login",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Ivan@q.com\",\r\n  \"password\": \"q\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Signup",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Ivan1@q.com\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"password\": \"q\",\r\n  \"role\": \"USER\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
 					},
 					"response": []
 				}
@@ -154,11 +260,21 @@
 				{
 					"name": "AddChat",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userId\": 1,\r\n  \"name\": \"New Chat Room\"\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Ivan chat\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -183,11 +299,21 @@
 				{
 					"name": "AddParticipant",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 2\r\n}",
+							"raw": "{\r\n    \"userId\": 7\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -195,7 +321,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/chats/1/participants",
+							"raw": "http://localhost:8081/api/chats/9/participants",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +330,7 @@
 							"path": [
 								"api",
 								"chats",
-								"1",
+								"9",
 								"participants"
 							]
 						}
@@ -214,10 +340,20 @@
 				{
 					"name": "GetChatParticipants",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/chats/1/participants",
+							"raw": "http://localhost:8081/api/chats/13/participants",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -226,7 +362,7 @@
 							"path": [
 								"api",
 								"chats",
-								"1",
+								"13",
 								"participants"
 							]
 						}
@@ -241,11 +377,21 @@
 				{
 					"name": "SendMessage",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTY1MzYyLCJleHAiOjE3MzQ5Njg5NjJ9.wYh3EKqMiVHQ93YLvpnCyZdnYnJVqfh46Igme_w054sKygtuYyAgH-sAh2EhaPq0j3HZRHEubIog1uzmTV4SoA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"chatId\": 1,\r\n    \"senderId\": 2,\r\n    \"content\": \"Hello, world!\"\r\n}\r\n",
+							"raw": "{\r\n    \"chatId\": 13,\r\n    \"content\": \"Я тоже\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -270,10 +416,20 @@
 				{
 					"name": "GetChatMessages",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTY1MzYyLCJleHAiOjE3MzQ5Njg5NjJ9.wYh3EKqMiVHQ93YLvpnCyZdnYnJVqfh46Igme_w054sKygtuYyAgH-sAh2EhaPq0j3HZRHEubIog1uzmTV4SoA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/messages/chat/1",
+							"raw": "http://localhost:8081/api/messages/chat/13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -283,7 +439,7 @@
 								"api",
 								"messages",
 								"chat",
-								"1"
+								"13"
 							]
 						}
 					},
@@ -291,11 +447,33 @@
 				},
 				{
 					"name": "GetMessage",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8081/api/messages/1",
+							"raw": "http://localhost:8081/api/messages/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -304,7 +482,7 @@
 							"path": [
 								"api",
 								"messages",
-								"1"
+								"9"
 							]
 						}
 					},
@@ -313,10 +491,20 @@
 				{
 					"name": "DeleteMessage",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJJdmFuQHEuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM0OTU4MTIzLCJleHAiOjE3MzQ5NjE3MjN9.FDhLFRLg7lWjPkUREZTXTSRYSZ1cBYFtG2MtnCavCaCGt4wJJ2wmX7yZ0w7Y8BmOIARxveYEPXkJZbde2-Qbrg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/messages/1",
+							"raw": "http://localhost:8081/api/messages/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -325,7 +513,7 @@
 							"path": [
 								"api",
 								"messages",
-								"1"
+								"11"
 							]
 						}
 					},
