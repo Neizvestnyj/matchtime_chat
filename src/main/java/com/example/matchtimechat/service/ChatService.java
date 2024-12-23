@@ -10,11 +10,12 @@ import com.example.matchtimechat.repository.ChatRepository;
 import com.example.matchtimechat.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatService {
+
     private final ChatRepository chatRepository;
     private final ChatParticipantRepository chatParticipantRepository;
     private final UserRepository userRepository;
@@ -25,37 +26,21 @@ public class ChatService {
         this.userRepository = userRepository;
     }
 
-    // Метод для получения всех участников чата
-    public List<User> getAllParticipants(Long chatId) {
-        // Получаем список участников чата через ChatParticipantRepository
-        List<ChatParticipant> participants = chatParticipantRepository.findByChatId(chatId);
-
-        // Извлекаем пользователей из ChatParticipant и возвращаем их
-        List<User> users = new ArrayList<>();
-        for (ChatParticipant participant : participants) {
-            users.add(participant.getUser());
-        }
-
-        return users;
-    }
-
-    public Chat createChat(CreateChatDTO createChatDTO) {
-        User user = userRepository.findById(createChatDTO.getUserId())
+    public Chat createChat(CreateChatDTO createChatDTO, String creatorEmail) {
+        User owner = userRepository.findByEmail(creatorEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Создаем новый чат
         Chat chat = new Chat();
-        chat.setCreatedBy(user);
         chat.setName(createChatDTO.getName());
-        chat = chatRepository.save(chat);
+        chat.setOwner(owner);
+        Chat savedChat = chatRepository.save(chat);
 
-        // Автоматически добавляем создателя как участника чата
         ChatParticipant participant = new ChatParticipant();
-        participant.setChat(chat);
-        participant.setUser(user);
+        participant.setChat(savedChat);
+        participant.setUser(owner);
         chatParticipantRepository.save(participant);
 
-        return chat;
+        return savedChat;
     }
 
     public ChatParticipant addParticipant(Long chatId, AddParticipantDTO addParticipantDTO) {
@@ -71,4 +56,21 @@ public class ChatService {
 
         return chatParticipantRepository.save(participant);
     }
+
+    public List<User> getAllParticipants(Long chatId) {
+        return chatParticipantRepository.findByChatId(chatId).stream()
+                .map(ChatParticipant::getUser)
+                .collect(Collectors.toList());
+    }
+
+    public Chat getChatById(Long chatId) {
+        return chatRepository.findById(chatId)
+                .orElseThrow(() -> new RuntimeException("Chat not found"));
+    }
+
+    public boolean isParticipant(Long chatId, String userEmail) {
+        return chatParticipantRepository.findByChatId(chatId).stream()
+                .anyMatch(participant -> participant.getUser().getEmail().equals(userEmail));
+    }
+
 }
