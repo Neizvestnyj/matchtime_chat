@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8125fddb-49eb-46bb-a55d-5aacb016d609",
+		"_postman_id": "d1bb2ebf-9f10-4e2e-9580-8cef713e3744",
 		"name": "MatchTimeChat",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33288118"
+		"_exporter_id": "32897450"
 	},
 	"item": [
 		{
@@ -364,6 +364,46 @@
 								"chats",
 								"13",
 								"participants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteChat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleEBxLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzM0OTgzODkwLCJleHAiOjE3MzQ5ODc0OTB9.5A812MWX5D2TRolGg-_kHx6JhUvy666kvcbdeIEfHLiOTP5ypNBRCKDPONhnHLy3q22fyGmAgkbsjy5zJH_wyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/chats/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"chats",
+								"4"
 							]
 						}
 					},
